@@ -3,13 +3,13 @@ import StaticModel from './StaticModel';
 
 export default class Model extends StaticModel {
 
-  constructor(...atributtes) {
+  constructor(...attributes) {
     super()
 
-    if (atributtes.length === 0) {
+    if (attributes.length === 0) {
       this._builder = new Builder(this)
     } else {
-      Object.assign(this, ...atributtes)
+      Object.assign(this, ...attributes)
     }
 
     if (this.baseURL === undefined) {
@@ -250,7 +250,7 @@ export default class Model extends StaticModel {
     return this.request({
       url,
       method: 'GET'
-    }).then(response => new this.constructor(response.data))
+    }).then(response => new this.constructor(response.data.data || response.data))
   }
 
   get() {

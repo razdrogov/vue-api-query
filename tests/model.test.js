@@ -7,6 +7,7 @@ import MockAdapter from 'axios-mock-adapter';
 import { Posts as postsResponse } from './dummy/data/posts'
 import { Posts as postsEmbedResponse } from './dummy/data/postsEmbed'
 import { Post as postResponse } from './dummy/data/post'
+import { Post as postEmbedResponse } from './dummy/data/postEmbed'
 import { Comments as commentsResponse } from './dummy/data/comments'
 
 describe('Model methods', () => {
@@ -56,6 +57,24 @@ describe('Model methods', () => {
     expect(post).toBeInstanceOf(Post)
   })
 
+  test('find() handles request with "data" wrapper', async () => {
+    axiosMock.onGet('http://localhost/posts/1').reply(200, postEmbedResponse)
+
+    const post = await Post.find(1)
+
+    expect(post).toEqual(postEmbedResponse.data)
+
+  })
+
+  test('find() handles request without "data" wrapper', async () => {
+    axiosMock.onGet('http://localhost/posts/1').reply(200, postResponse)
+
+    const post = await Post.find(1)
+
+    expect(post).toEqual(postResponse)
+
+  })
+
   test('get() method returns a array of objects as instace of suchModel', async () => {
     axiosMock.onGet('http://localhost/posts').reply(200, postsResponse)
 
@@ -95,7 +114,7 @@ describe('Model methods', () => {
     post.comments().get()
   })
 
-  test('$get() fetch style request with "data" attribute', async () => {
+  test('$get() fetch style request with "data" wrapper', async () => {
     axiosMock.onGet('http://localhost/posts').reply(200, postsEmbedResponse)
 
     const posts = await Post.$get()
@@ -104,7 +123,7 @@ describe('Model methods', () => {
 
   })
 
-  test('$get() fetch style request without "data" attribute', async () => {
+  test('$get() fetch style request without "data" wrapper', async () => {
     axiosMock.onGet('http://localhost/posts').reply(200, postsEmbedResponse.data)
 
     const posts = await Post.$get()
