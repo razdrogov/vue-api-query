@@ -629,14 +629,25 @@ This package automatically handles the response from backend and convert it into
 
 ## Single object
 
-If your backend responds with a single object as a **ROOT ELEMENT**  like this:
+If your backend responds with a single object:
 
 ```js
+// It is the root element
 {
   id: 1,
   firstname: 'John',
   lastname: 'Doe',
   age: 25
+}
+
+// It is wapped by 'data' attribute
+data:{
+  {
+    id: 1,
+    firstname: 'John',
+    lastname: 'Doe',
+    age: 25
+  }
 }
 ```
 
@@ -654,7 +665,7 @@ let user = await User.first()
 user.makeBirthday()
 ```
 
-This **WILL NOT** be converted into `User` model, because the main data is not the root element.
+This **WILL NOT** be converted into `User` model, because the main data is not the root element or it is not wrapped by `data` attribute.
 
 ```js
 user: {  
