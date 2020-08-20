@@ -5,9 +5,10 @@
   "main": "build/index.js",
   "scripts": {
     "build": "babel src -d build",
-    "prepare": "yarn build && yarn cc",
+    "prepare": "npm build",
     "test": "jest --watch --coverage",
-    "cc": "jest --coverage"
+    "cc": "jest --coverage",
+    "deploy": "npm publish"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
@@ -16,6 +17,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/razdrogov/vue-api-query.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@razdrogov"
   },
   "keywords": [
     "vue",
@@ -28,7 +32,7 @@
   ],
   "author": "Robson Tenório",
   "license": "MIT",
-  "homepage": "https://github.com/razdrogov/vue-api-query#readme",
+  "homepage": "https://github.com/robsontenorio/vue-api-query#readme",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
