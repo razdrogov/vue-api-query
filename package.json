@@ -1,6 +1,6 @@
 {
   "name": "vue-api-query",
-  "version": "1.5.3",
+  "version": "1.5.5",
   "description": "💎 Elegant and simple way to build requests for REST API. Fork https://github.com/robsontenorio/vue-api-query",
   "main": "build/index.js",
   "scripts": {

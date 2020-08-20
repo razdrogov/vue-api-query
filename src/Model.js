@@ -6,9 +6,9 @@ export default class Model extends StaticModel {
   constructor(...attributes) {
     super()
 
-    if (attributes.length === 0) {
-      this._builder = new Builder(this)
-    } else {
+    this._builder = new Builder(this);
+
+    if (attributes.length > 0) {
       Object.assign(this, ...attributes)
     }
 
